@@ -1,0 +1,92 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP";
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#workspaces, 
+#clock, 
+#language, 
+#pulseaudio, 
+#network, 
+#cpu, 
+#memory, 
+#battery, 
+#tray {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    margin: 4px 3px;
+    padding: 0 10px;
+    min-height: 24px;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+#clock {
+    padding: 0 25px;
+    color: #ff0000;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+#workspaces {
+    padding: 0 5px;
+}
+
+#workspaces button {
+    color: #550000;
+    font-size: 16px;
+    padding: 0 6px;
+    margin: 2px;
+}
+
+#workspaces button.active {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 12px #ff0000;
+}
+
+#workspaces button.persistent {
+    color: #222222;
+}
+
+#cpu { 
+    border-radius: 10px 0 0 10px; 
+    border-right: none; 
+    margin-right: 0; 
+    color: #ff5555; 
+}
+#memory { 
+    border-radius: 0 10px 10px 0; 
+    border-left: none; 
+    margin-left: 0; 
+    color: #ff5555; 
+}
+
+#network { color: #ff0000; }
+#language { color: #ff0000; min-width: 40px; }
+#battery { color: #ff0000; }
+#pulseaudio { color: #ff4444; }
+
+#tray {
+    padding: 0 8px;
+}
+
+tooltip {
+    background: #000000;
+    border: 1px solid #ff0000;
+    border-radius: 10px;
+}
+tooltip label {
+    color: #ffffff;
+    padding: 8px;
+}
