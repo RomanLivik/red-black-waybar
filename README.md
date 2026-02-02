@@ -16,7 +16,7 @@ mv ~/red-black-waybar/style.css ~/.config/waybar
 * reboot hyprland or pc if you have waybar in autoexec
 * killall waybar && waybar if you have not got it in autoexec
 
-If there is a very big gap between the waybar and the windows, you should edit in ~/.config/hypr/hyprland.config:
+If there is a very big gap between the waybar and the windows, you should edit theese plines in ~/.config/hypr/hyprland.config:
 ```
 #####################
 ### LOOK AND FEEL ###
