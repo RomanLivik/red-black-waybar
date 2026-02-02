@@ -1,0 +1,19 @@
+(defwindow power-menu
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0px"          ;; Если зазор большой, попробуй "5px"
+                      :width "280px"
+                      :height "45px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive false
+  :focusable false
+  (power-layout))
+
+(defwidget power-layout []
+  (box :class "island-bg" 
+       :orientation "h" 
+       :space-evenly true
+    (button :class "btn sleep" :onclick "systemctl suspend && eww close power-menu" "󰒲")
+    (button :class "btn reboot" :onclick "reboot" "󰑐")
+    (button :class "btn shutdown" :onclick "poweroff" "")))
