@@ -3,8 +3,8 @@
     "position": "top",
     "mod": "dock",
     "exclusive": true,
-    "height": 32,
-    "margin-top": 8,
+    "height": 10,
+    "margin-top": 3,
     "margin-left": 10,
     "margin-right": 10,
     "fixed-center": true,
@@ -17,8 +17,14 @@
         "network", 
         "group/hardware", 
         "battery", 
-        "tray"
+        "tray",
+        "custom/exit"
     ],
+    "custom/exit":{
+        "format": "",
+        "on-click": "eww open --toggle power-menu",
+        "tooltip": false
+    },
 
     "hyprland/workspaces": {
         "disable-scroll": true,
