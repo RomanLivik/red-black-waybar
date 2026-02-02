@@ -2,6 +2,9 @@
 
 Red and black theme for waybar for arch linux with hyprland. 
 
+> The product is under development.
+> Please, treat this with understanding and keep track of changes in this repository.
+
 ## Installation
 ```
 git clone https://github.com/RomanLivik/red-black-waybar.git
