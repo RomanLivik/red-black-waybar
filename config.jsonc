@@ -42,14 +42,16 @@
 
     "clock": {
         "format": "<span>󰥔 </span>{:%H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "on-click": "eww open --toggle notif-menu"
     },
 
     "network": {
         "format-wifi": " {essid}",
         "format-ethernet": "󰈀",
         "format-disconnected": "󰖪",
-        "tooltip-format": "IP: {ipaddr}"
+        "tooltip-format": "IP: {ipaddr}",
+        "on-click": "eww open --toggle wifi-menu"
     },
 
     "group/hardware": {
