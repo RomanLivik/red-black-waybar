@@ -1,36 +1,63 @@
 (defpoll top-apps :interval "2s" :initial "[]" "~/.config/eww/scripts/get_apps.sh")
-
+(defpoll ram-channels :interval "1h" :initial "2" "~/.config/eww/scripts/get_ram.sh")
 
 (defwindow power-menu
   :monitor 0
-  :geometry (geometry :x "0%" :y "0px" :width "140px" :height "10px" :anchor "top center")
+  :geometry (geometry :x "0%" :y "0px" :width "300px" :height "50px" :anchor "top center")
   :stacking "fg"
-  (box :class "island-bg-compact" :space-evenly true
-    (button :class "btn-sm" :onclick "systemctl suspend && eww close power-menu" "󰒲")
-    (button :class "btn-sm" :onclick "reboot" "󰑐")
-    (button :class "btn-sm" :onclick "poweroff" "")))
-
+  (box :class "base-island" :space-evenly true
+    (button :class "btn-power sleep" :onclick "systemctl suspend && eww close power-menu" "󰒲")
+    (button :class "btn-power reboot" :onclick "reboot" "󰑐")
+    (button :class "btn-power shutdown" :onclick "poweroff" "")))
 
 (defwindow cpu-monitor
   :monitor 0
-  :geometry (geometry :x "15px" :y "0px" :width "340px" :height "390px" :anchor "top right")
+  :geometry (geometry :x "15px" :y "0px" :width "340px" :height "450px" :anchor "top right")
   :stacking "fg"
-  (box :class "cpu-island" :orientation "v" :spacing 10 :space-evenly false
+  (box :class "base-island" :orientation "v" :spacing 15 :space-evenly false
     (label :text "SYSTEM ANALYSIS" :class "title-red" :halign "center")
     
-    
-    (box :class "donut-box" :halign "center"
+    (box :class "donut-container" :halign "center"
       (overlay
-        (circular-progress :value {EWW_CPU.avg} :thickness 12 :start-at 75 :class "cpu-donut")
+        (circular-progress :value {EWW_CPU.avg} :thickness 14 :start-at 75 :class "cpu-donut")
         (box :orientation "v" :valign "center" :halign "center"
-          (label :text "󰍛" :class "cpu-icon")
-          (label :text "${round(EWW_CPU.avg, 0)}%" :class "cpu-value"))))
+          (label :text "󰍛" :class "cpu-icon-inner")
+          (label :text "${round(EWW_CPU.avg, 0)}%" :class "cpu-text-inner"))))
 
-    
     (box :orientation "v" :spacing 5 :style "margin-top: 5px;"
       (label :text "TOP PROCESSES" :halign "start" :class "subtitle-red")
       (box :orientation "v" :spacing 4
         (for app in top-apps
           (box :orientation "h"
-            (label :text {app.name} :halign "start" :class "app-text")
-            (label :text "${app.cpu}%" :halign "end" :hexpand true :class "app-text")))))))
+            (label :text {app.name} :halign "start" :class "app-name-red")
+            (label :text "${app.cpu}%" :halign "end" :hexpand true :class "app-cpu-red")))))))
+
+(defwindow mem-monitor
+  :monitor 0
+  :geometry (geometry :x "15px" :y "0px" :width "340px" :height "320px" :anchor "top right")
+  :stacking "fg"
+  (box :class "base-island" :orientation "v" :spacing 15 :space-evenly false
+    (label :text "MILITECH PARALINE MK.4" :class "deck-title" :halign "center")
+    
+    (box :class "cyber-frame" :orientation "v" :spacing 10
+      (box :orientation "h" :space-evenly true
+        (box :orientation "v"
+          (label :text "SLOTS" :class "stat-label")
+          (box :orientation "h" :spacing 5 :halign "center"
+            (for i in "[0, 1, 2, 3]" 
+              (label :text "󰘚" :class {i < ram-channels ? "slot-active" : "stat-label"}))))
+        
+        (box :orientation "v"
+          (label :text "CAPACITY" :class "stat-label")
+          (label :text "${round(EWW_RAM.total_mem / 1073741824, 1)}GB" :class "stat-value-bright")))
+
+      (box :orientation "h" :style "margin-top: 10px;"
+        (label :text "RAM_USED: ${round(EWW_RAM.used_mem / 1073741824, 1)}GB" :class "stat-label" :halign "start")
+        (label :text "LOAD: ${round(EWW_RAM.used_mem_perc, 0)}%" :class "stat-value-bright" :halign "end" :hexpand true)))
+
+    (box :orientation "v" :spacing 5
+      (label :text "MEMORY BUFFER INTEGRITY" :class "stat-label" :halign "start")
+      (progress :value {EWW_RAM.used_mem_perc} :class "mem-bar"))
+    
+    (label :text "SYSTEM LINK ESTABLISHED // NO ERRORS" :class "stat-label" :style "margin-top: 10px;" :halign "center")
+  ))
