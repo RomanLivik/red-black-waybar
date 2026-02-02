@@ -1,42 +1,76 @@
-// Сброс всех стандартных стилей GTK
+
 * {
   all: unset;
 }
 
-.island-bg {
+label, button {
+  color: #ff0000;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK JP";
+  font-weight: bold;
+}
+
+.island-bg-compact, .cpu-island {
   background-color: #000000;
   border: 2px solid #ff0000;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.cpu-island {
   border-radius: 20px;
-  padding: 0 10px;
-  // Неоновое свечение острова
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
-.btn {
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 22px; // Базовый размер
-  color: #ffffff;
-  padding: 5px 15px;
-  margin: 5px 0;
-  border-radius: 10px;
+.title-red {
+  font-size: 14px;
 }
 
-// Эффект наведения (Hover)
-// Вместо transform используем увеличение шрифта и яркие цвета
-.sleep:hover {
-  color: #ffaa00;
-  font-size: 26px; // Кнопка станет больше визуально
-  text-shadow: 0 0 10px #ffaa00;
+.subtitle-red {
+  font-size: 10px;
 }
 
-.reboot:hover {
-  color: #00ccff;
-  font-size: 26px;
-  text-shadow: 0 0 10px #00ccff;
+.donut-box {
+  min-width: 120px;
+  min-height: 120px;
 }
 
-.shutdown:hover {
+.cpu-donut {
   color: #ff0000;
-  font-size: 26px;
-  text-shadow: 0 0 10px #ff0000;
+  background-color: #1a0000;
+}
+
+.cpu-icon {
+  font-size: 30px;
+}
+
+.cpu-value {
+  font-size: 16px;
+}
+
+.core-text {
+  font-size: 10px;
+  min-width: 25px;
+}
+
+progress trough {
+  background-color: #111111;
+  border-radius: 2px;
+  min-height: 8px;
+}
+
+progress highlight {
+  background-color: #ff0000;
+  border-radius: 2px;
+}
+
+.app-text {
+  font-size: 11px;
+}
+
+.btn-sm {
+  font-size: 20px;
+  padding: 5px;
+}
+
+.btn-sm:hover {
+  background-color: #220000;
 }
