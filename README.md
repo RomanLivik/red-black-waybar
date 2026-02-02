@@ -7,6 +7,7 @@ Red and black theme for waybar for arch linux with hyprland.
 
 ## Packets you need
 * eww (aur)
+* dunst (official repo)
 
 ## Installation
 ```
