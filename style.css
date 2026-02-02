@@ -7,8 +7,12 @@
     padding: 0;
 }
 
+
+
 window#waybar {
     background: transparent;
+    margin: 0px;
+    padding: 0px;
 }
 
 #workspaces, 
@@ -28,6 +32,16 @@ window#waybar {
     padding: 0 5px;
     min-height: 24px;
     box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+#custom-exit {
+    background: #000000;
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    padding: 0 12px;
+    margin: 4px 3px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
 
 #clock {
@@ -80,6 +94,7 @@ window#waybar {
 #tray {
     padding: 0 8px;
 }
+
 
 tooltip {
     background: #000000;
