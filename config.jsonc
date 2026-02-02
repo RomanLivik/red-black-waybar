@@ -61,7 +61,10 @@
     "format": "󰍛 {usage}%", "interval": 2,
     "on-click": "eww open --toggle cpu-monitor"
     },
-    "memory": { "format": "󰘚 {percentage}%", "interval": 2 },
+    "memory": { 
+        "format": "󰘚 {percentage}%", "interval": 2,
+        "on-click": "eww open --toggle mem-monitor"
+},
 
     "battery": {
         "states": { "warning": 30, "critical": 15 },
