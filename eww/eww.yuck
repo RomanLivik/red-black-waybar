@@ -1,19 +1,36 @@
+(defpoll top-apps :interval "2s" :initial "[]" "~/.config/eww/scripts/get_apps.sh")
+
+
 (defwindow power-menu
   :monitor 0
-  :geometry (geometry :x "0%"
-                      :y "0px"          ;; Если зазор большой, попробуй "5px"
-                      :width "280px"
-                      :height "45px"
-                      :anchor "top center")
+  :geometry (geometry :x "0%" :y "0px" :width "140px" :height "10px" :anchor "top center")
   :stacking "fg"
-  :exclusive false
-  :focusable false
-  (power-layout))
+  (box :class "island-bg-compact" :space-evenly true
+    (button :class "btn-sm" :onclick "systemctl suspend && eww close power-menu" "󰒲")
+    (button :class "btn-sm" :onclick "reboot" "󰑐")
+    (button :class "btn-sm" :onclick "poweroff" "")))
 
-(defwidget power-layout []
-  (box :class "island-bg" 
-       :orientation "h" 
-       :space-evenly true
-    (button :class "btn sleep" :onclick "systemctl suspend && eww close power-menu" "󰒲")
-    (button :class "btn reboot" :onclick "reboot" "󰑐")
-    (button :class "btn shutdown" :onclick "poweroff" "")))
+
+(defwindow cpu-monitor
+  :monitor 0
+  :geometry (geometry :x "15px" :y "0px" :width "340px" :height "390px" :anchor "top right")
+  :stacking "fg"
+  (box :class "cpu-island" :orientation "v" :spacing 10 :space-evenly false
+    (label :text "SYSTEM ANALYSIS" :class "title-red" :halign "center")
+    
+    
+    (box :class "donut-box" :halign "center"
+      (overlay
+        (circular-progress :value {EWW_CPU.avg} :thickness 12 :start-at 75 :class "cpu-donut")
+        (box :orientation "v" :valign "center" :halign "center"
+          (label :text "󰍛" :class "cpu-icon")
+          (label :text "${round(EWW_CPU.avg, 0)}%" :class "cpu-value"))))
+
+    
+    (box :orientation "v" :spacing 5 :style "margin-top: 5px;"
+      (label :text "TOP PROCESSES" :halign "start" :class "subtitle-red")
+      (box :orientation "v" :spacing 4
+        (for app in top-apps
+          (box :orientation "h"
+            (label :text {app.name} :halign "start" :class "app-text")
+            (label :text "${app.cpu}%" :halign "end" :hexpand true :class "app-text")))))))
