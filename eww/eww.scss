@@ -1,0 +1,42 @@
+// Сброс всех стандартных стилей GTK
+* {
+  all: unset;
+}
+
+.island-bg {
+  background-color: #000000;
+  border: 2px solid #ff0000;
+  border-radius: 20px;
+  padding: 0 10px;
+  // Неоновое свечение острова
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+.btn {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 22px; // Базовый размер
+  color: #ffffff;
+  padding: 5px 15px;
+  margin: 5px 0;
+  border-radius: 10px;
+}
+
+// Эффект наведения (Hover)
+// Вместо transform используем увеличение шрифта и яркие цвета
+.sleep:hover {
+  color: #ffaa00;
+  font-size: 26px; // Кнопка станет больше визуально
+  text-shadow: 0 0 10px #ffaa00;
+}
+
+.reboot:hover {
+  color: #00ccff;
+  font-size: 26px;
+  text-shadow: 0 0 10px #00ccff;
+}
+
+.shutdown:hover {
+  color: #ff0000;
+  font-size: 26px;
+  text-shadow: 0 0 10px #ff0000;
+}
