@@ -80,3 +80,83 @@ progress highlight, .mem-bar highlight {
 .sleep:hover { color: #ffaa00; text-shadow: 0 0 10px #ffaa00; }
 .reboot:hover { color: #00ccff; text-shadow: 0 0 10px #00ccff; }
 .shutdown:hover { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+
+.wifi-header-simple {
+  padding: 5px 10px;
+  border-bottom: 1px solid #330000;
+}
+
+.toggle-on { color: #ff0000; font-size: 20px; }
+.toggle-off { color: #330000; font-size: 20px; }
+
+.wifi-scroll-area {
+  margin-top: 5px;
+}
+
+.net-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #050505;
+  margin: 0 5px;
+}
+
+.net-item:hover {
+  background-color: #151515;
+}
+
+.net-item-active {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #220000;
+  border: 1px solid #ff0000;
+  margin: 0 5px;
+}
+
+.net-name {
+  font-size: 13px;
+}
+
+.icon-connected {
+  color: #ff0000;
+  font-size: 18px;
+}
+
+.icon-available {
+  color: #660000;
+  font-size: 16px;
+}
+
+.net-bars {
+  color: #ff0000;
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+
+.notif-scroll {
+  border-top: 1px solid #330000;
+  padding-top: 10px;
+}
+
+.notif-card {
+  background-color: #050505;
+  border: 1px solid #220000;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+.notif-summary {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.notif-body {
+  font-size: 11px;
+  color: #aa0000;
+}
+
+.notif-row { background-color: #050505; padding: 10px; border-radius: 10px; }
+.toggle-btn-on { color: #ff0000; font-size: 20px; }
+.toggle-btn-off { color: #330000; font-size: 20px; }
+.clear-btn { background-color: #100000; border: 1px solid #ff0000; padding: 5px; border-radius: 8px; }
