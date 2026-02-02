@@ -15,3 +15,13 @@ mv ~/red-black-waybar/style.css ~/.config/waybar
 ## To accept changes
 * reboot hyprland or pc if you have waybar in autoexec
 * killall waybar && waybar if you have not got it in autoexec
+
+If there is a very big gap between the waybar and the windows, you should edit in ~/.config/hypr/hyprland.config:
+```
+#####################
+### LOOK AND FEEL ###
+#####################
+general{
+  gaps_in = 3 <=== gap from border
+  gaps_out = 2 <=== gap from top
+  border_size = 2 <=== gap between windows
