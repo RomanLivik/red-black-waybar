@@ -57,7 +57,10 @@
         "modules": ["cpu", "memory"]
     },
 
-    "cpu": { "format": "󰍛 {usage}%", "interval": 2 },
+    "cpu": {
+    "format": "󰍛 {usage}%", "interval": 2,
+    "on-click": "eww open --toggle cpu-monitor"
+    },
     "memory": { "format": "󰘚 {percentage}%", "interval": 2 },
 
     "battery": {
