@@ -3,7 +3,7 @@
 
 (defwindow power-menu
   :monitor 0
-  :geometry (geometry :x "0%" :y "0px" :width "300px" :height "50px" :anchor "top center")
+  :geometry (geometry :x "0%" :y "0px" :width "150px" :height "30px" :anchor "top center")
   :stacking "fg"
   (box :class "base-island" :space-evenly true
     (button :class "btn-power sleep" :onclick "systemctl suspend && eww close power-menu" "󰒲")
@@ -61,3 +61,68 @@
     
     (label :text "SYSTEM LINK ESTABLISHED // NO ERRORS" :class "stat-label" :style "margin-top: 10px;" :halign "center")
   ))
+
+(defpoll wifi-list :interval "10s" :initial "[]" "~/.config/eww/scripts/wifi_info.sh")
+(defpoll wifi-status :interval "2s" "nmcli radio wifi")
+
+(defwindow wifi-menu
+  :monitor 0
+  :geometry (geometry :x "15px" :y "0px" :width "250px" :height "400px" :anchor "top right")
+  :stacking "fg"
+  (box :class "base-island" :orientation "v" :spacing 15 :space-evenly false
+
+    (box :orientation "h" :class "wifi-header-simple"
+      (label :text "WI-FI" :class "title-red" :halign "start")
+      (button :class {wifi-status == "enabled" ? "toggle-on" : "toggle-off"}
+              :onclick "~/.config/eww/scripts/wifi_control.sh toggle"
+              :halign "end" :hexpand true
+              {wifi-status == "enabled" ? "󰖩" : "󰖪"}))
+
+    (scroll :height 320 :vscroll true :hscroll false :class "wifi-scroll-area"
+      (box :orientation "v" :spacing 8 :halign "center" :width 270 
+        (for net in wifi-list
+          (button :class {net.active == "*" ? "net-item-active" : "net-item"}
+                  :onclick "~/.config/eww/scripts/wifi_control.sh connect '${net.ssid}'"
+            (box :orientation "h" :spacing 15 :halign "fill"
+              (label :text {net.active == "*" ? "󰄲" : "󰖩"}
+                     :class {net.active == "*" ? "icon-connected" : "icon-available"} :width 20)
+
+              (label :text {net.ssid == "" ? "Unknown" : net.ssid}
+                     :class "net-name" :limit-width 18 :halign "start" :hexpand true)
+
+              (label :text {net.bars} :class "net-bars" :halign "end" :width 40))))))
+  )
+)
+
+(defpoll dnd-status :interval "1s" "~/.config/eww/scripts/notif_control.sh status")
+(defpoll notif-history :interval "2s" :initial "[]" "~/.config/eww/scripts/notif_history.sh")
+
+(defwindow notif-menu
+  :monitor 0
+  :geometry (geometry :x "0%" :y "0px" :width "340px" :height "450px" :anchor "top center")
+  :stacking "fg"
+  (box :class "base-island" :orientation "v" :spacing 15 :space-evenly false
+
+    (label :text "NOTIFICATIONS" :class "title-red" :halign "center")
+
+    (box :orientation "h" :spacing 10 :class "notif-row"
+      (label :text {dnd-status == "DND ON" ? "󰂛" : "󰂚"} :class "icon-red")
+      (label :text "Do Not Disturb" :class "net-name" :hexpand true :halign "start")
+      (button :class {dnd-status == "DND ON" ? "toggle-btn-on" : "toggle-btn-off"}
+              :onclick "~/.config/eww/scripts/notif_control.sh toggle"
+              {dnd-status == "DND ON" ? "󰔡" : "󰔢"}))
+
+    (label :text "RECENT" :halign "start" :class "subtitle-red")
+    (scroll :height 280 :vscroll true :hscroll false :class "notif-scroll"
+      (box :orientation "v" :spacing 10
+        (for notif in notif-history
+          (box :class "notif-card" :orientation "v" :spacing 5 :halign "fill"
+            (label :text {notif.summary} :class "notif-summary" :halign "start" :limit-width 30)
+            (label :text {notif.body} :class "notif-body" :halign "start" :wrap true :limit-width 120)))))
+
+    (button :class "clear-btn" :onclick "~/.config/eww/scripts/notif_control.sh clear"
+      (box :orientation "h" :spacing 10 :halign "center"
+        (label :text "󰎟" :class "icon-red")
+        (label :text "Clear History" :class "net-name")))
+  )
+)
